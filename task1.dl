@@ -1,0 +1,11 @@
+.type Obj <: symbol
+
+.decl Superclass( a:Obj, b:Obj )
+.input Superclass(filename="DirectSuperclass.facts")
+.input Superclass(filename="DirectSuperinterface.facts")
+
+.decl SubClass( a:Obj, b:Obj )
+.output SubClass
+
+SubClass(A, B) :- Superclass(A, B).
+SubClass(A, B) :- SubClass(A, C), SubClass(C, B).

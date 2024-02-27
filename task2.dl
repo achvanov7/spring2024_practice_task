@@ -1,0 +1,12 @@
+.type Method <: symbol
+
+.decl Call(a:Method, b:Method)
+.input Call(filename="MethodInvocation.facts")
+.decl Sink(a:Method)
+.input Sink(filename="sinkMethod.facts")
+
+.decl SinkReachable(caller:Method, sink:Method, N:number)
+.output SinkReachable
+
+SinkReachable(A, B, 1) :- Call(A, B), Sink(B).
+SinkReachable(A, B, x + 1) :- Call(A, C), SinkReachable(C, B, x).
